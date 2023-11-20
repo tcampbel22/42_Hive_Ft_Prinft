@@ -6,12 +6,10 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = .
 OBJ_DIR = .
 
-SRCS = 
+SRCS = ft_putstr_count.c str_handler.c ft_putchar_count.c ft_putnbr_count.c ft_printf.c 
 
-BONUS = 
 
 OBJS = $(SRCS:.c=.o)
-BOBJS = $(BONUS:.c=.o)
 
 $(NAME) : $(OBJS)
 	ar rcs $(NAME) $(OBJS)
@@ -21,18 +19,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 all: $(NAME)
 
-bonus: .bonus
-
-.bonus: $(BOBJS) $(OBJS) 
-	ar rcs $(NAME) $(BOBJS) $(OBJS)
-	touch .bonus
-
 clean:
-	rm -f $(OBJS) $(BOBJS) .bonus
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY : all clean fclean bonus re
+.PHONY : all clean fclean re
