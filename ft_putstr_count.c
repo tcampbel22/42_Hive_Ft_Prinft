@@ -6,25 +6,23 @@
 /*   By: tcampbel <tcampbel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:09:32 by tcampbel          #+#    #+#             */
-/*   Updated: 2023/11/21 11:57:10 by tcampbel         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:00:08 by tcampbel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	ft_putstr_count(char *str)
+int	ft_putstr_count(char *str, int *ptr)
 {
 	int	count;
 
 	count = 0;
 	if (str == NULL)
-		return (write(1, "(null)", 6));
+		return (ft_putstr_count("(null)", ptr));
 	while (*str)
 	{
-		count += write(1, &*str++, 1);
+		count += ft_putchar_count(*str, ptr);
+		str++;
 	}
-	if (count == -1)
-		return (-1);
-	else
-		return (count);
+	return (count);
 }
