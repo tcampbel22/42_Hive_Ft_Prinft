@@ -6,37 +6,37 @@
 /*   By: tcampbel <tcampbel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:26:42 by tcampbel          #+#    #+#             */
-/*   Updated: 2023/11/20 17:18:57 by tcampbel         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:18:40 by tcampbel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	str_handler(char identifier, va_list ap)
+int	str_handler(char flag, va_list ap)
 {
 	int	count;
 
 	count = 0;
-	if (identifier == 'c')
+	if (flag == 'c')
 		count += ft_putchar_count(va_arg(ap, int));
-	else if (identifier == 's')
+	else if (flag == 's')
 		count += ft_putstr_count(va_arg(ap, char *));
-	else if (identifier == 'd')
-		count += ft_putnbr_count((long)va_arg(ap, int), 10, identifier);
-	else if (identifier == 'x')
-		count += ft_putnbr_count((long)va_arg(ap, unsigned int), 16, identifier);
-	else if (identifier == 'X')
-		count += ft_putnbr_count((long)va_arg(ap, unsigned int), 16, identifier);
-	else if (identifier == 'i')
-		count += ft_putnbr_count((long)va_arg(ap, int), 10, identifier);
-	else if (identifier == 'u')
-		count += ft_putnbr_count((long)va_arg(ap, unsigned int), 10, identifier);
-	else if (identifier == 'p')
+	else if (flag == 'd')
+		count += ft_putnbr_count((long)va_arg(ap, int));
+	else if (flag == 'x')
+		count += ft_puthex_count((long)va_arg(ap, unsigned int), flag);
+	else if (flag == 'X')
+		count += ft_puthex_count((long)va_arg(ap, unsigned int), flag);
+	else if (flag == 'i')
+		count += ft_putnbr_count((long)va_arg(ap, int));
+	else if (flag == 'u')
+		count += ft_putnbr_count((long)va_arg(ap, unsigned int));
+	else if (flag == 'p')
 	{
 		count += ft_putstr_count("0x");
-		count += ft_putnbr_count((long)va_arg(ap, unsigned int), 16, identifier);
+		count += ft_puthex_count(va_arg(ap, unsigned long long), flag);
 	}
-	else if (identifier == '%')
+	else if (flag == '%')
 		count += ft_putchar_count('%');
 	return (count);
 }
