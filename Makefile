@@ -3,8 +3,6 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC_DIR = .
-OBJ_DIR = .
 
 SRCS = ft_putstr_count.c str_handler.c ft_putchar_count.c ft_putnbr_count.c ft_printf.c ft_puthex_count.c
 
@@ -14,7 +12,7 @@ OBJS = $(SRCS:.c=.o)
 $(NAME) : $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+%.o : %.c
 	cc $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
